@@ -1,0 +1,49 @@
+{% extends 'accueil.html.twig' %}
+
+{% block title %}Produit | Liste et Ajout{% endblock %}
+
+{% block body %}
+  <center><h2>Gestion des produits</h2></center>
+  <div class="row">
+    <div class="container col-md-8">
+		<div class="card">
+			<div class="card-header bg-info">Liste des catégories</div>
+			<div class="card-body">
+				<table class="table table-striped">
+					<thead>
+            <tr>
+              <th scope="col">Identifiant</th>
+              <th scope="col">Libellé</th>
+              <th scope="col">Quantité en stock</th>
+              <th scope="col">Catégorie</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for prod in produits %}
+            <tr>
+              <th scope="row">{{ prod.id }}</th>
+              <td>{{ prod.libelle }}</td>
+              <td>{{ prod.stock }}</td>
+              <td>{{ prod.categorie }}</td>
+              <td>
+                <a class="btn btn-danger" href="/Produit/delete/{{prod.id}}">Supprimer</a>
+                <a class="btn btn-info" href="/Produit/edit/{{prod.id}}">Modifier</a>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+				</table>
+			</div>
+		</div>
+    </div>
+    <div class="container col-md-4">
+      <div class="card">
+        <div class="card-header bg-secondary">Ajouter une catégorie</div>
+        <div class="card-body">
+          {{ form(form) }}
+        </div>
+      </div>
+    </div>
+	</div>
+{% endblock %}

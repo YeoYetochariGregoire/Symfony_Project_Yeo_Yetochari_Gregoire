@@ -1,0 +1,49 @@
+{% extends 'accueil.html.twig' %}
+
+{% block title %}Entree | Tableau de gestion{% endblock %}
+
+{% block body %}
+  	
+    <center><h2>Gestion des entrées</h2></center>
+  <div class="row">
+    <div class="container col-md-9">
+		<div class="card">
+			<div class="card-header bg-info">Liste des Entrées</div>
+			<div class="card-body">
+				<table class="table table-striped">
+					<thead>
+                        <tr>
+                            <th scope="col">Identifiant</th>
+                            <th scope="col">Quantité</th>
+                            <th scope="col">Prix</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Produit</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for ent in entrees %}
+                            <tr>
+                                <th scope="row">{{ ent.id }}</th>
+                                <td>{{ ent.quantite }}</td>
+                                <td>{{ ent.prix }}</td>
+                                <td>{{ ent.date|date("{d/m/Y}"|replace({'{' : '', '}' : ''})) }}</td>
+                                <td>{{ ent.produit }}</td>
+                                <td><a class="btn btn-danger" href="/Categorie/delete/{{ent.id}}">supprimer</a></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+				</table>
+			</div>
+		</div>
+    </div>
+    <div class="container col-md-3">
+      <div class="card">
+        <div class="card-header bg-secondary">Ajouter une entrée</div>
+        <div class="card-body">
+          {{ form(form) }}
+        </div>
+      </div>
+    </div>
+	</div>
+{% endblock %}

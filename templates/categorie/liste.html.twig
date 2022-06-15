@@ -1,0 +1,44 @@
+{% extends 'accueil.html.twig' %}
+
+{% block title %}Categorie | Liste{% endblock %}
+
+{% block body %}
+    <center><h2>Gestion des catégorie</h2></center>
+
+  <div class="row">
+    <div class="container col-md-6">
+		<div class="card">
+			<div class="card-header bg-info">Liste des catégories</div>
+			<div class="card-body">
+				<table class="table table-striped">
+					<thead>
+            <tr>
+              <th scope="col">Identifiant</th>
+              <th scope="col">Nom</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for cat in categories %}
+            <tr>
+              <th scope="row">{{ cat.id }}</th>
+              <td>{{ cat.nom }}</td>
+              <td><a class="btn btn-danger" href="/Categorie/delete/{{cat.id}}">supprimer</a></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+				</table>
+			</div>
+		</div>
+    </div>
+    <div class="container col-md-6">
+      <div class="card">
+        <div class="card-header bg-secondary">Ajouter une catégorie</div>
+        <div class="card-body">
+          {{ form(form) }}
+        </div>
+      </div>
+    </div>
+	</div>
+
+{% endblock %}

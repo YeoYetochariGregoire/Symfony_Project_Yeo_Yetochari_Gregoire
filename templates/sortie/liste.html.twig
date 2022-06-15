@@ -1,0 +1,55 @@
+{% extends 'accueil.html.twig' %}
+
+{% block title %}Sorties | Tableau de gestion{% endblock %}
+
+{% block body %}
+  <center><h2>Gestion des sorties</h2></center>
+  <div class="row">
+    <div class="container col-md-8">
+		<div class="card">
+			<div class="card-header bg-info">Liste des Sorties</div>
+			<div class="card-body">
+				<table class="table table-striped">
+					<thead>
+                        <tr>
+                            <th scope="col">Idsortifiant</th>
+                            <th scope="col">Quantité</th>
+                            <th scope="col">Prix</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Produit</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for sort in sorties %}
+                            <tr>
+                                <th scope="row">{{ sort.id }}</th>
+                                <td>{{ sort.quantite }}</td>
+                                <td>{{ sort.prix }}</td>
+                                <td>{{ sort.date|date("{d/m/Y}")|replace({'{' : '', '}' : ''}) }}</td>
+                                <td>{{ sort.produit }}</td>
+                                <td><a class="btn btn-danger" href="/Categorie/delete/{{sort.id}}">supprimer</a></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                    
+				</table>
+			</div>
+		</div>
+    </div>
+    <div class="container col-md-4">
+      <div class="card">
+        <div class="card-header bg-secondary">Ajouter une sortie</div>
+        {% if errorMessage is defined %}
+            <div class="alert alert-danger">{{ errorMessage }}</div>
+        {% endif %}
+        {% if successMessage is defined %}
+            <div class="alert alert-success">{{ successMessage }}</div>
+        {% endif %}
+        <div class="card-body">
+          {{ form(form) }}
+        </div>
+      </div>
+    </div>
+	</div>
+{% endblock %}
